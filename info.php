@@ -7,9 +7,9 @@
 <?php
 
 	/**
-	* Esto es un comentario
+	* Este archivo muestra datos de la base world
 	* @author Ruben
-	* @return nada
+	* @return ciudades
 	*/
 
 
@@ -30,11 +30,18 @@
 	echo "<p>conexión a la base de datos</p>";
 
 
+	/**
+	*Tras hacer exitosamente la conexión a la base de datos,
+	*hacemos la consulta pidiendo nombre, countrycode y población de cada ciudad
+	*/
 
 	$sql = "SELECT Name, CountryCode, Population FROM city ORDER BY population DESC LIMIT 10";
 
 	$result = $conn->query($sql);
 
+	/**
+	*Si existen resultados, los mostramos.
+	**/
 
 	if ($result->num_rows >0){
 
@@ -54,6 +61,9 @@
 
 		echo "</table>";
 	}
+	/**
+	*Si no hay resultados o no funciona correctamente, lanzamos un error.
+	**/
 	if (!$result){
 	
 		die("Error en la consulta: ".$conn->error);
